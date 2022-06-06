@@ -77,7 +77,7 @@ export default function Home({ data }) {
             <input
               type='text'
               className='w-full p-3 lg:p-4 md:pr-12 text-sm border-gray-400 rounded-lg shadow-lg'
-              placeholder='Search countries'
+              placeholder='Search countries...'
               value={search}
               onChange={handleChange}
             />

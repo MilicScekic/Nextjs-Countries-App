@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 function Card({ flag, region, name, population }) {
@@ -52,10 +53,11 @@ function Card({ flag, region, name, population }) {
         </div>
 
         <h5 className='mt-4 mb-4 text-xl font-bold text-gray-900'>{name}</h5>
-
-        <a className='py-2 text-yellow-400 hover:text-yellow-500' href=''>
-          Read more
-        </a>
+        <Link href={`/country/${name}`}>
+          <a className='py-2 text-yellow-400 hover:text-yellow-500'>
+            Read more
+          </a>
+        </Link>
       </div>
     </div>
   );
