@@ -28,9 +28,8 @@ export default function Home({ data }) {
         setCountries(searchfilteredata);
       }
     } else {
-      setCountries(data);
       if (search !== '') {
-        const searchfilteredata = countries.filter((country) => {
+        const searchfilteredata = data.filter((country) => {
           return (
             country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
           );
