@@ -20,7 +20,7 @@ export default function Home({ data }) {
       });
       setCountries(filteredData);
       if (search !== '') {
-        const searchfilteredata = countries.filter((country) => {
+        const searchfilteredata = filteredData.filter((country) => {
           return (
             country.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
           );
@@ -28,6 +28,7 @@ export default function Home({ data }) {
         setCountries(searchfilteredata);
       }
     } else {
+      setCountries(data);
       if (search !== '') {
         const searchfilteredata = countries.filter((country) => {
           return (
@@ -35,8 +36,6 @@ export default function Home({ data }) {
           );
         });
         setCountries(searchfilteredata);
-      } else {
-        setCountries(data);
       }
     }
   }, [region, search]);
