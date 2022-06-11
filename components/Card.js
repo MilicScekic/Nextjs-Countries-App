@@ -16,7 +16,7 @@ function Card({
       <a>
         <div className='relative block p-8 border border-gray-100 shadow-xl rounded-xl min-h-full max-h-full'>
           <div className='flex'>
-            <span className='flex absolute left-4 top-4 rounded-full px-3 py-1.5 bg-yellow-100 text-yellow-600 font-medium text-xs'>
+            <span className='flex absolute left-4 top-4 rounded-full px-3 py-1.5 bg-yellow-100 text-yellow-900 font-medium text-xs'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-5 w-5 mr-1'
@@ -33,7 +33,7 @@ function Card({
             </span>
             <div onClick={handleSortPopulation}>
               {population > 12000000 ? (
-                <span className='flex absolute right-4 top-4 rounded-full px-3 py-1.5 bg-green-100 text-green-600 font-medium text-xs'>
+                <span className='flex absolute right-4 top-4 rounded-full px-3 py-1.5 bg-green-100 text-green-900 font-medium text-xs'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     className='h-5 w-5 mr-2'
@@ -45,7 +45,7 @@ function Card({
                   <span className='self-center'>{population}</span>
                 </span>
               ) : (
-                <span className='flex absolute right-4 top-4 rounded-full px-3 py-1.5 bg-red-100 text-red-600 font-medium text-xs'>
+                <span className='flex absolute right-4 top-4 rounded-full px-3 py-1.5 bg-red-100 text-red-900 font-medium text-xs'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     className='h-5 w-5 mr-2'
@@ -61,7 +61,7 @@ function Card({
           </div>
           <div className='mt-6 text-gray-500 '>
             <div className='relative w-20 h-20'>
-              <Image src={flag} layout='fill' objectFit='contain' />
+              <Image src={flag} layout='fill' objectFit='contain' alt={name} />
             </div>
 
             <h5 className='mt-4 mb-4 text-xl font-bold text-gray-600'>

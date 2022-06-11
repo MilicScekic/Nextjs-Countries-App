@@ -38,7 +38,12 @@ function Country({ country }) {
 
         <div className='flex flex-col w-full md:flex-row mt-5 md:justify-between'>
           <div className='justify-center relative w-3/4 h-[185px] md:h-[380px] mb-5 md:mb-0 mr-5 md:mr-10'>
-            <Image src={country.flags.svg} layout='fill' objectFit='cover' />
+            <Image
+              src={country.flags.svg}
+              layout='fill'
+              objectFit='cover'
+              alt={country.name.common}
+            />
           </div>
           <div className='w-full md:w-2/6 flex flex-col md:justify-between text-gray-600'>
             <h2>
