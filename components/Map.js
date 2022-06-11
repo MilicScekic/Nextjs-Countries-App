@@ -82,7 +82,7 @@ const MapChart = ({ latlng, name, region, subregion }) => {
         });
         break;
     }
-  }, []);
+  }, [region, subregion]);
 
   return (
     <ComposableMap projection={projection} projectionConfig={projectionConfig}>

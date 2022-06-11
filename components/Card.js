@@ -64,9 +64,9 @@ function Card({
               <Image src={flag} layout='fill' objectFit='contain' alt={name} />
             </div>
 
-            <h5 className='mt-4 mb-4 text-xl font-bold text-gray-600'>
+            <h1 className='mt-4 mb-4 text-xl font-bold text-gray-600'>
               {name}
-            </h5>
+            </h1>
             <div className='md:flex justify-between'>
               <p>
                 <span className='font-semibold'>Capital: </span>

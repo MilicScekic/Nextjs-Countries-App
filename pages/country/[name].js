@@ -18,7 +18,7 @@ function Country({ country }) {
     } else {
       setCurrency('No currency');
     }
-  }, []);
+  }, [country.currencies, country.region]);
 
   return (
     <div className='py-10 md:px-10'>
@@ -43,6 +43,7 @@ function Country({ country }) {
               layout='fill'
               objectFit='cover'
               alt={country.name.common}
+              priority={true}
             />
           </div>
           <div className='w-full md:w-2/6 flex flex-col md:justify-between text-gray-600'>
