@@ -185,7 +185,7 @@ export default function Home({ data }) {
             <p className='text-center mt-8 text-lg text-gray-600'>Loading...</p>
           ) : (
             <button
-              className='py-3 px-6 mt-8 bg-yellow-500 hover:text-yellow-600 text-white mx-auto block text-lg rounded-lg'
+              className='py-3 px-6 mt-8 bg-yellow-400 hover:text-yellow-600 text-black mx-auto block text-lg rounded-lg'
               onClick={handleLoad}
             >
               Load more

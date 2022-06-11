@@ -70,7 +70,7 @@ function Card({
             <div className='md:flex justify-between'>
               <p>
                 <span className='font-semibold'>Capital: </span>
-                {capital}
+                {capital?.length > 0 ? capital[0] : 'No Capital'}
               </p>
               <p>
                 <span className='font-semibold'>Area: </span>
