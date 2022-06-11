@@ -6,6 +6,9 @@ export default function Home({ data }) {
   const [countries, setCountries] = useState(data);
   const [search, setSearch] = useState('');
   const [region, setRegion] = useState('All');
+  const [number, setNumber] = useState(9);
+  const [loading, setLoading] = useState(false);
+  const [sort, setSort] = useState(null);
 
   const setregion = new Set(data.map((d) => d.region, region));
   const uniqueregion = Array.from(setregion);
@@ -28,6 +31,7 @@ export default function Home({ data }) {
         setCountries(searchfilteredata);
       }
     } else {
+      setCountries(data);
       if (search !== '') {
         const searchfilteredata = data.filter((country) => {
           return (
@@ -45,6 +49,27 @@ export default function Home({ data }) {
 
   const handleRegion = (e) => {
     setRegion(e.target.value);
+  };
+
+  const handleLoad = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setNumber((number) => number + 9);
+      setLoading(false);
+    }, 200);
+  };
+
+  const handleSortPopulation = (e) => {
+    e.preventDefault();
+    if (sort === null) {
+      setSort('asc');
+    }
+    if (sort === 'asc') {
+      setSort('desc');
+    }
+    if (sort === 'desc') {
+      setSort(null);
+    }
   };
 
   return (
@@ -100,38 +125,100 @@ export default function Home({ data }) {
         </div>
 
         <div className='grid md:grid-cols-2 lg:grid-cols-3 md:gap-10'>
-          {countries.map((country) => {
-            return (
-              <Card
-                key={country.code}
-                flag={country.flag}
-                region={country.region}
-                name={country.name}
-                population={country.population}
-              />
-            );
-          })}
+          {countries.length > 0
+            ? sort === null
+              ? countries.slice(0, number).map((country) => {
+                  return (
+                    <Card
+                      key={country.code}
+                      flag={country.flag[0]}
+                      region={country.region}
+                      name={country.name}
+                      population={country.population}
+                      capital={country.capital}
+                      area={country.area}
+                      handleSortPopulation={handleSortPopulation}
+                    />
+                  );
+                })
+              : sort === 'asc'
+              ? countries
+                  .slice(0, number)
+                  .sort((a, b) => a.population - b.population)
+                  .map((country) => {
+                    return (
+                      <Card
+                        key={country.code}
+                        flag={country.flag[0]}
+                        region={country.region}
+                        name={country.name}
+                        population={country.population}
+                        capital={country.capital}
+                        area={country.area}
+                        handleSortPopulation={handleSortPopulation}
+                      />
+                    );
+                  })
+              : sort === 'desc'
+              ? countries
+                  .slice(0, number)
+                  .sort((a, b) => b.population - a.population)
+                  .map((country) => {
+                    return (
+                      <Card
+                        key={country.code}
+                        flag={country.flag[0]}
+                        region={country.region}
+                        name={country.name}
+                        population={country.population}
+                        capital={country.capital}
+                        area={country.area}
+                        handleSortPopulation={handleSortPopulation}
+                      />
+                    );
+                  })
+              : ''
+            : 'No countries'}
         </div>
+        {countries.length > number ? (
+          loading ? (
+            <p className='text-center mt-8 text-lg text-gray-600'>Loading...</p>
+          ) : (
+            <button
+              className='py-3 px-6 mt-8 bg-yellow-400 hover:text-yellow-600 text-white mx-auto block text-lg rounded-lg'
+              onClick={handleLoad}
+            >
+              Load more
+            </button>
+          )
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`https://restcountries.com/v3.1/all`);
+  const res = await fetch(
+    `https://restcountries.com/v3/all?fields=name,population,region,flags,cca2,capital,area`
+  );
   const result = await res.json();
   const data = result.map((country) => {
     return {
-      flag: country.flags.svg,
+      flag: country.flags,
       region: country.region,
       name: country.name.common,
       population: country.population,
       code: country.cca2,
+      capital: country.capital,
+      area: country.area,
     };
   });
   return {
     props: {
       data,
+      revalidate: 10,
     },
   };
 }
