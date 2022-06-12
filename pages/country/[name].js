@@ -36,42 +36,42 @@ function Country({ country }) {
           <Link href='/'>Go Back</Link>
         </span>
 
-        <div className='flex flex-col w-full md:flex-row mt-5 md:justify-between'>
-          <div className='justify-center relative w-3/4 h-[185px] md:h-[380px] mb-5 md:mb-0 mr-5 md:mr-10'>
+        <div className='flex flex-col w-full md:flex-row mt-2 md:justify-between'>
+          <div className='justify-center relative w-3/4 md:w-3/4 h-[175px] mb-2 md:h-[380px] md:mb-0 mr-5 md:mr-10'>
             <Image
               src={country.flags.svg}
               layout='fill'
-              objectFit='cover'
+              objectFit='contain'
               alt={country.name.common}
               priority={true}
             />
           </div>
-          <div className='w-full md:w-2/6 flex flex-col md:justify-between text-gray-600'>
-            <h2>
+          <div className='w-full md:w-2/6 flex flex-col justify-center text-gray-600'>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Country: </span>
               {country.name.common}
             </h2>
-            <h2>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Population: </span>
               {country.population}
             </h2>
-            <h2>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Continent: </span>
               {country.region}
             </h2>
-            <h2>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Capital: </span>
               {country.capital?.length > 0 ? country.capital[0] : 'No Capital'}
             </h2>
-            <h2>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Area: </span>
               {country.area} km²
             </h2>
-            <h2>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Currency: </span>
               {currency}
             </h2>
-            <h2>
+            <h2 className='mb-2'>
               <span className='font-semibold'>Independent: </span>
               {country.independent ? 'yes' : 'no'}
             </h2>
